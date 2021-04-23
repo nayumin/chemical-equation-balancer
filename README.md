@@ -1,4 +1,4 @@
-###Simple Chemical Equation Balancer
+# Simple Chemical Equation Balancer
 e.g:
 ```js
 const balancer = require('@akikowo/chemical-balancer')
