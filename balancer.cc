@@ -3,13 +3,14 @@
 #include <napi.h>
 using namespace std;
 long long a[100][100];
+long long x123[100][100];
 long long b[100];
 long long B[100];
 long long c[100];
 map <string, int> mp[100];
 int m = 0, n = 0;
 string s[100];
-
+string s123[100];
 void solve();
 void rutGon();
 
@@ -247,7 +248,16 @@ if (c[0] > 1)
 return s[0] + st;
 }
 Napi::String Balance(const Napi::CallbackInfo& info) {
-  return Napi::String::New(info.Env(),PTHH(info[0].ToString().Utf8Value()));
+  Napi::String res = Napi::String::New(info.Env(),PTHH(info[0].ToString().Utf8Value()));
+  //fill(&a[0][0], &a[0][0] + sizeof(a), 0);
+  memset(a, 0, 100*100*(sizeof(long long)));
+  fill(std::begin(s), std::end(s), "");
+  std::fill( std::begin( b ), std::end( b ), 0 );
+  std::fill( std::begin( B ), std::end( B ), 0 );
+  std::fill( std::begin( c ), std::end( c ), 0 );
+  m = 0, n = 0;
+  mp->clear();
+  return res;
 }
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set("balance", Napi::Function::New(env,Balance));
